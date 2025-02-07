@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.history.pushState(null, null, `#${section}`);
       })
       .catch(() => {
-        contentDiv.innerHTML = "<p>内容加载失败，请稍后再试。</p>";
+        contentDiv.innerHTML = "<p>Loading failed, please try again later.</p>";
       });
   }
 
