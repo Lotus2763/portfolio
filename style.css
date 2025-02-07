@@ -2,6 +2,10 @@ html {
   --backgroundColor: linear-gradient(to right, #fffed8, #d6dcff);
   --transparentBackground: transparent;
   --headerNavFontColor: #ffffff;
+  --fontColor: #555555;
+  --purpleColor: #d6dcff;
+  --whiteColor: #ffffff;
+  --hoverTransitionTime: 0.3s;
 
   background: var(--backgroundColor);
   width: 100vw;
@@ -9,6 +13,7 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  color: var(--fontColor);
 
   scroll-behavior: smooth;
 }
@@ -39,7 +44,7 @@ section {
   border: #000000;
 }
 
-header h1 {
+head h1 {
   text-align: center;
   color: #000000;
   font-family: "Shrikhand", serif;
@@ -53,6 +58,23 @@ header nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin: 20px 0;
+}
+
+header nav a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fontColor);
+  /* background-color: var(--whiteColor); for css */
+  border-radius: 4px;
+  font-size: 1.1rem;
+  padding: 10px 25px;
+}
+
+header nav a:hover {
+  background-color: var(--purpleColor);
+  color: var(--whiteColor);
+  transition: var(--hoverTransitionTime);
 }
 
 .main-nav-hyperlink {
