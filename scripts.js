@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
         setupExperienceBlocks();
         setupBlogContent();
         setupContactFormReset();
+
+        //only setup the photography photo grid if the section is photography
+        if (section === "photography") {
+          setupPhotographyPhotoGrid();
+        }
       })
       .catch(() => {
         contentDiv.innerHTML = "<p>Loading failed, please try again later.</p>";
@@ -99,5 +104,46 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       form.reset();
     });
+  }
+
+  /**
+   * Function to load photography photo grid and lightbox
+   */
+  function setupPhotographyPhotoGrid() {
+    const lightbox = document.getElementById("photography-lightbox");
+    const lightboxImg = document.getElementById("photography-lightbox-img");
+    const closeBtn = document.querySelector(".photography-close");
+
+    if (!lightbox || !lightboxImg || !closeBtn) {
+      console.error("Lightbox elements not found!");
+      return;
+    }
+
+    // Wait for DOM to update before querying for thumbnails
+    setTimeout(() => {
+      const thumbnails = document.querySelectorAll(".thumbnail");
+
+      if (thumbnails.length === 0) {
+        console.error("No thumbnails found!");
+        return;
+      }
+
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener("click", function () {
+          lightbox.style.display = "flex";
+          lightboxImg.src = this.src;
+        });
+      });
+
+      closeBtn.addEventListener("click", function () {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    }, 100); // 100ms delay to allow DOM to update
   }
 });
