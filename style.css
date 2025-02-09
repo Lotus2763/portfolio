@@ -43,7 +43,7 @@ header {
 }
 
 main {
-  margin: 5%; /* for css debug*/
+  margin: 2%; /* for css debug*/
   /* border: #000000 1px solid; /* for css debug*/
   flex: 1; /* stand the rest height beside header*/
 }
@@ -51,6 +51,11 @@ main {
 section {
   text-align: center;
   border: #000000; /* for css debug*/
+}
+
+.black-line {
+  width: 80%;
+  border: 0.5px solid #3e3e3e48;
 }
 
 /* Header Bar */
@@ -69,6 +74,7 @@ header nav {
   justify-content: space-evenly;
   align-items: center;
   margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 header nav a {
@@ -139,6 +145,7 @@ header nav a:hover {
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: var(--regularBorderRadius);
+  font-family: var(--fontFamily) !important;
 }
 
 .contact-page input:focus,
@@ -155,6 +162,7 @@ header nav a:hover {
 .contact-submit-button {
   /* same effect as nav item */
   width: 50%; /* same width as form */
+  max-width: 400px;
   border: none;
   border-radius: var(--regularBorderRadius);
   background-color: transparent;
