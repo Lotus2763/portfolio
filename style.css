@@ -11,6 +11,7 @@ html {
   --whiteColor: #ffffff;
   --blockBackgroundColor: #f0f0f0;
   --borderGreyColor: #ddd;
+  --warningRedColor: #b92b27;
   --hoverTransitionTime: 0.3s;
   --regularBorderRadius: 4px;
   --hugeBorderRadius: 8px;
@@ -222,6 +223,38 @@ header nav a:hover {
   transition: var(--hoverTransitionTime);
 }
 
+.contact-reset-button {
+  border: none;
+  text-decoration: underline;
+  color: var(--whiteColor);
+  background-color: transparent;
+  font-family: var(--fontFamily) !important;
+  cursor: pointer;
+}
+
+.contact-reset-button:hover {
+  color: var(--warningRedColor);
+  transition: var(--hoverTransitionTime);
+}
+
+.contact-social-media-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30%;
+  margin: 5px 0;
+}
+
+.contact-social-media-container a img {
+  width: 50px;
+  height: 50px;
+}
+
+.contact-social-media-container a img:hover {
+  width: 60px;
+  height: 60px;
+  transition: var(--hoverTransitionTime);
+}
 /* Experience Page*/
 .experience-content-container {
   max-height: 70vh; /* TODO: need to check the figure for mobile respondible */

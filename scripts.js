@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const contentDiv = document.getElementById("content");
 
-  /**
-   * Function to load a section dynamically
-   */
   function loadSection(section) {
     fetch(`sections/${section}.html`)
       .then((response) => response.text())
@@ -11,22 +8,15 @@ document.addEventListener("DOMContentLoaded", function () {
         contentDiv.innerHTML = html;
         window.history.pushState(null, null, `#${section}`);
 
-        // Setup Experience Page Interactions
         setupExperienceBlocks();
-
-        // If the blog section is loaded, fetch and display blog content
-        if (section === "blog") {
-          setupBlogContent();
-        }
+        setupBlogContent();
+        setupContactFormReset();
       })
       .catch(() => {
         contentDiv.innerHTML = "<p>Loading failed, please try again later.</p>";
       });
   }
 
-  /**
-   * Event listener for navigation links
-   */
   document.querySelectorAll("nav a").forEach((link) => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
@@ -35,28 +25,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Load the initial section based on URL hash or default to "home"
   const initialSection = location.hash.substring(1) || "home";
   loadSection(initialSection);
 
-  /**
-   * Function to handle experience block interactions
-   */
   function setupExperienceBlocks() {
     const blocks = document.querySelectorAll(".experience-block");
 
     if (blocks.length === 0) return;
 
-    blocks.forEach(block => {
+    blocks.forEach((block) => {
       block.addEventListener("click", function () {
         block.classList.toggle("expanded");
       });
     });
   }
 
-  /**
-   * Function to fetch and display blog content
-   */
   function setupBlogContent() {
     const datesContainer = document.getElementById("blog-dates");
     const contentContainer = document.getElementById("blog-content");
@@ -64,23 +47,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!datesContainer || !contentContainer) return;
 
     fetch("blogs.json")
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (Array.isArray(data)) {
           loadDates(data);
-          loadContent(data[0]); // Load the first blog content by default
+          loadContent(data[0]); // Load first blog content by default
         } else {
           contentContainer.innerHTML = "<p>Error: Invalid blog data.</p>";
         }
       })
       .catch(() => {
-        contentContainer.innerHTML = "<p>Error loading blog data. Please try again later.</p>";
+        contentContainer.innerHTML =
+          "<p>Error loading blog data. Please try again later.</p>";
       });
 
-    /**
-     * Function to load blog dates in the sidebar
-     */
     function loadDates(blogs) {
+      datesContainer.innerHTML = "";
       blogs.forEach((blog, index) => {
         const li = document.createElement("li");
         li.textContent = blog.date;
@@ -93,14 +75,29 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    /**
-     * Function to load blog content when a date is clicked
-     */
     function loadContent(blog) {
-      contentContainer.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p>`;
-
-      document.querySelectorAll("#blog-dates li").forEach(li => li.classList.remove("active-date"));
-      [...datesContainer.children].find(li => li.textContent === blog.date)?.classList.add("active-date");
+      contentContainer.innerHTML = `<h2>${blog.title}</h2>${blog.content}`;
+      document
+        .querySelectorAll("#blog-dates li")
+        .forEach((li) => li.classList.remove("active-date"));
+      [...datesContainer.children]
+        .find((li) => li.textContent === blog.date)
+        ?.classList.add("active-date");
     }
+  }
+
+  /**
+   * Function to handle reset button in the contact form
+   */
+  function setupContactFormReset() {
+    const resetButton = document.querySelector(".contact-reset-button");
+    const form = document.querySelector(".contact-content-container form");
+
+    if (!resetButton || !form) return;
+
+    resetButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      form.reset();
+    });
   }
 });
