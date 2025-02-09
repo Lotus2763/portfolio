@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((html) => {
         contentDiv.innerHTML = html;
         window.history.pushState(null, null, `#${section}`);
+
+        setupExperienceBlocks();
       })
       .catch(() => {
         contentDiv.innerHTML = "<p>Loading failed, please try again later.</p>";
@@ -23,4 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const initialSection = location.hash.substring(1) || "home";
   loadSection(initialSection);
+
+  function setupExperienceBlocks() {
+    const blocks = document.querySelectorAll(".experience-block");
+
+    if (blocks.length === 0) return;
+
+    blocks.forEach(block => {
+      block.addEventListener("click", function () {
+        block.classList.toggle("expanded");
+      });
+    });
+  }
 });

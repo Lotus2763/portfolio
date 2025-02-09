@@ -9,6 +9,7 @@ html {
   --blackColor: #000000;
   --purpleColor: #d6dcff;
   --whiteColor: #ffffff;
+  --yellowColor: fffed8;
   --hoverTransitionTime: 0.3s;
   --regularBorderRadius: 4px;
   --fontFamily: "Crimson Text", serif;
@@ -176,4 +177,97 @@ header nav a:hover {
   background-color: var(--purpleColor);
   color: var(--whiteColor);
   transition: var(--hoverTransitionTime);
+}
+
+/* Experience Page*/
+.experience-content-container {
+  max-height: 70vh; /* TODO: need to check the figure for mobile respondible */
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 2%; /* TODO: need to check the figure for mobile respondible */
+}
+
+.experience-content-container ul {
+  text-align: start;
+  margin: 5px 0 10px 0;
+  padding-inline-start: 20px;
+}
+
+.experience-content-container h3 {
+  margin: 0;
+}
+
+/* Experience Page Version Two */
+.experience-content-container-v2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-template-rows: 1fr 1fr; /* Two rows */
+  gap: 10px;
+  width: 100%;
+  height: 65vh; /* TODO: Adjust as needed */
+}
+
+/* Each experience block */
+.experience-block {
+  background: transparent;
+  padding: 15px;
+  border: 2px solid var(--purpleColor);
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 25vh; /* default height for all blocks */
+  transition: background-color 0.3s ease, max-height 0.4s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.experience-block:hover {
+  background-color: #e0e0e0; /* Slight gray effect */
+}
+
+.experience-block::after {
+  content: "Click to see more";
+  font-size: 0.9rem;
+  color: #6b77bd;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.experience-block:hover::after {
+  opacity: 1;
+}
+
+.experience-block h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.experience-block ul {
+  margin-top: 10px;
+  padding-left: 20px;
+  overflow-y: hidden; /* Initially hidden scrolling */
+  text-align: start;
+  margin: 5px 0 10px 0;
+  padding-inline-start: 20px;
+}
+
+.experience-block.expanded {
+  max-height: 70vh; /* allow full expansion */
+  overflow: auto;
+  background-color: #f0f0f0;
+}
+
+.experience-block.expanded ul {
+  overflow-y: auto;
+  margin: 5px 0 10px 0;
+  padding-inline-start: 20px;
 }
