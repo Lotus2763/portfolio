@@ -313,3 +313,27 @@ header nav a:hover {
   margin: 5px 0 10px 0;
   padding-inline-start: 20px;
 }
+
+/* Film Page*/
+.film-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* TODO: adjust*/
+}
+
+.video-placeholder {
+  width: 100%; /* full width of parent container */
+  max-width: 800px; /* maximum width on larger screens */
+  aspect-ratio: 16 / 9; /* maintain 16:9 aspect ratio */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
