@@ -169,7 +169,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // handle the img load failure
       thumbnails.forEach((thumbnail) => {
+        thumbnail.onerror = function () {
+          console.warn("Image failed to load:", this.src);
+          this.style.display = "none";
+        };
+
         thumbnail.addEventListener("click", function () {
           lightbox.style.display = "flex";
           lightboxImg.src = this.src;
