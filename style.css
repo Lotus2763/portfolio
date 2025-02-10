@@ -191,7 +191,6 @@ header nav a:hover {
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   margin: 20px 0;
 }
 
@@ -203,6 +202,7 @@ header nav a:hover {
   font-size: 1rem;
   border-radius: var(--regularBorderRadius);
   font-family: var(--fontFamily) !important;
+  margin-bottom: 20px;
 }
 
 .contact-page input:focus,
@@ -218,7 +218,7 @@ header nav a:hover {
 
 .contact-submit-button {
   /* same effect as nav item */
-  width: 50%; /* same width as form */
+  width: 100%;
   max-width: 400px;
   border: none;
   border-radius: var(--regularBorderRadius);

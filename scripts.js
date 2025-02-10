@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
         setupBlogContent();
         setupContactFormReset();
 
+        if (section === "contact") {
+          setupContactFormSubmission(); // only setup the contact form submission if the section is contact
+        }
+
         //only setup the photography photo grid if the section is photography
         if (section === "photography") {
           setupPhotographyPhotoGrid();
@@ -103,6 +107,43 @@ document.addEventListener("DOMContentLoaded", function () {
     resetButton.addEventListener("click", function (event) {
       event.preventDefault();
       form.reset();
+    });
+  }
+
+  /*
+   * Function to handle submit message to formspree
+   */
+  function setupContactFormSubmission() {
+    const form = document.getElementById("contact-form");
+
+    if (!form) return;
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const submitButton = form.querySelector(".contact-submit-button");
+      submitButton.textContent = "Submitting...";
+
+      try {
+        const response = await fetch("https://formspree.io/f/xnnjzkqq", {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          alert("Message sent successfully! ✅");
+          form.reset();
+        } else {
+          alert("Oops! Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Error submitting form. Please try again later.");
+      } finally {
+        submitButton.textContent = "Submit";
+      }
     });
   }
 
