@@ -1,0 +1,33 @@
+<section class="photography-page">
+  <h2>Photography</h2>
+  <p class="photography-banner">Scroll to explore the full gallery! 📸</p>
+
+  <div class="photography-content-container">
+    <div class="photography-left-container">
+      <h3>Athletics</h3>
+
+      <div class="photo-grid" id="athletics-grid"></div>
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <div class="photography-right-container">
+      <h3>Events</h3>
+      <div class="photo-grid" id="events-grid"></div>
+    </div>
+  </div>
+
+  <div id="loading-spinner" style="display: none">
+    <span>Loading...</span>
+  </div>
+
+  <div id="finished-banner" style="display: none">
+    <p>All photos have been loaded. Stay tuned for more!</p>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="photography-lightbox" class="photography-lightbox">
+  <span class="photography-close">&times;</span>
+  <img id="photography-lightbox-img" class="photography-lightbox-content" />
+</div>
