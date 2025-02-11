@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const contentDiv = document.getElementById("content");
+  const nameLogo = document.getElementById("h1-logo");
 
   function loadSection(section) {
     fetch(`sections/${section}.html`)
@@ -25,6 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(() => {
         contentDiv.innerHTML = "<p>Loading failed, please try again later.</p>";
       });
+  }
+
+  /* Handle name logo to jump back to home page */
+  function jumpBackToHome() {
+    loadSection("home");
+  }
+  if (nameLogo) {
+    nameLogo.addEventListener("click", jumpBackToHome);
   }
 
   // Handle nav clicks
@@ -62,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const contentContainer = document.getElementById("blog-content");
     if (!datesContainer || !contentContainer) return;
 
-    fetch("blogs.json")
+    fetch("data/blogs.json")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -102,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-   /**
+  /**
    * Function to handle reset button in the contact form
    */
   function setupContactFormReset() {
@@ -116,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
- /*
+  /*
    * Function to handle submit message to formspree
    */
   function setupContactFormSubmission() {
@@ -169,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch("images.json")
+    fetch("data/images.json")
       .then((response) => response.json())
       .then((data) => {
         const athleticsData = data.athletics || [];
