@@ -119,6 +119,10 @@ header nav a:hover {
   text-decoration: uppercase;
 }
 
+#menu-btn {
+  display: none;
+}
+
 /* Home Page */
 .home-page {
   display: flex;
@@ -555,4 +559,83 @@ header nav a:hover {
   font-size: 30px;
   color: var(--whiteColor);
   cursor: pointer;
+}
+
+/* Responsive UI for mobile terminal*/
+@media screen and (max-width: 768px) {
+  /* Header section*/
+  header nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: var(--whiteColor);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--regularBorderRadius);
+    width: 150px;
+    z-index: 1000;
+  }
+
+  header nav.show-menu {
+    display: flex;
+    padding: 5px 10px;
+  }
+
+  header nav a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--fontColor);
+    border-bottom: 1px solid var(--borderGreyColor);
+  }
+
+  header nav a:last-child {
+    border-bottom: none;
+  }
+
+  #menu-btn {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 2000;
+  }
+
+  /* All Page*/
+  .home-page,
+  .blog-page,
+  .contact-page,
+  .experience-page,
+  .experience-v2-page,
+  .film-page,
+  .photography-page {
+    width: 90%;
+  }
+
+  .black-line {
+    width: 95%;
+  }
+
+  /* Home Page*/
+  .home-left-content {
+    display: none;
+  }
+  .home-right-content {
+    width: 100%;
+  }
+
+  /* Film Page */
+  .film-page {
+    position: fixed;
+  }
+  .video-placeholder {
+    position: relative;
+    top: 10%;
+  }
 }
