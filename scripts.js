@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Experience blocks
+ * Experience Page: Handle expanding and collapsing experience blocks
  */
 function setupExperienceBlocks() {
   const blocks = document.querySelectorAll(".experience-block");
@@ -94,7 +94,7 @@ function setupExperienceBlocks() {
 }
 
 /**
- * Function to fetch Blog content from blogs.json
+ * Blog Page: Fetch Blog content from blogs.json
  */
 function setupBlogContent() {
   const datesContainer = document.getElementById("blog-dates");
@@ -167,7 +167,7 @@ function setupBlogContent() {
 }
 
 /**
- * Function to handle reset button in the contact form
+ * Contact Page: Handle reset button in the contact form
  */
 function setupContactFormReset() {
   const resetButton = document.querySelector(".contact-reset-button");
@@ -180,8 +180,8 @@ function setupContactFormReset() {
   });
 }
 
-/*
- * Function to handle submit message to formspree
+/**
+ * Contact Page:  Handle submit message to formspree
  */
 function setupContactFormSubmission() {
   const form = document.getElementById("contact-form");
@@ -217,21 +217,49 @@ function setupContactFormSubmission() {
 }
 
 /**
- * Photography grid and lightbox with lazy loading
+ * Photography Page: photo grid and lightbox with lazy loading
  */
 function setupPhotographyPhotoGrid() {
   const lightbox = document.getElementById("photography-lightbox");
   const lightboxImg = document.getElementById("photography-lightbox-img");
   const closeBtn = document.querySelector(".photography-close");
 
+  const photographyPage = document.querySelector(".photography-page");
+  const scrollTopBtn = document.getElementById("photography-scroll-to-top-btn");
+  const mainElement = document.querySelector("main");
+
   // Get the spinner and finishedBanner elements
   const spinner = document.getElementById("loading-spinner");
   const finishedBanner = document.getElementById("finished-banner");
+
+  if (!photographyPage || !scrollTopBtn) {
+    console.error("Photography page or scroll button not found!");
+    return;
+  }
 
   if (!lightbox || !lightboxImg || !closeBtn) {
     console.error("Lightbox elements not found!");
     return;
   }
+
+  // btn show/hide when scrolling
+  const scrollTarget = mainElement || document;
+  scrollTarget.addEventListener("scroll", function () {
+    const scrollTop = mainElement ? mainElement.scrollTop : window.scrollY;
+    if (scrollTop > 200) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  // btn handle scroll to the top of photography-page
+  scrollTopBtn.addEventListener("click", function () {
+    (mainElement || window).scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 
   fetch("data/images.json")
     .then((response) => response.json())
@@ -263,13 +291,10 @@ function setupPhotographyPhotoGrid() {
 
       // Scroll listener
       mainElement.addEventListener("scroll", () => {
-        console.log("Scrolling inside main...");
-
         if (
           mainElement.scrollTop + mainElement.clientHeight >=
           mainElement.scrollHeight - 50
         ) {
-          console.log("检测到触底了");
           loadMoreAthletics();
           loadMoreEvents();
         }
@@ -288,10 +313,6 @@ function setupPhotographyPhotoGrid() {
 
         const endIndex = athleticsIndex + BATCH_SIZE;
         const slice = athleticsData.slice(athleticsIndex, endIndex);
-
-        // Simulate async load (optional)
-        // If you want to see the spinner, you can wrap this in a setTimeout:
-        // setTimeout(() => { ... }, 1000);
 
         slice.forEach((item) => {
           const img = document.createElement("img");

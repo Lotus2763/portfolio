@@ -462,7 +462,9 @@ header nav a:hover {
   margin: 5px 0;
 }
 
-#blog-scroll-top-btn {
+/* Scroll To Top btns: photography and blog page share the same button effect */
+#blog-scroll-top-btn,
+#photography-scroll-to-top-btn {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -479,11 +481,13 @@ header nav a:hover {
   transition: opacity var(--hoverTransitionTime);
 }
 
-#blog-scroll-top-btn:hover {
+#blog-scroll-top-btn:hover,
+#photography-scroll-to-top-btn:hover {
   background-color: var(--warningRedColor);
 }
 
-#blog-scroll-top-btn.show {
+#blog-scroll-top-btn.show,
+#photography-scroll-to-top-btn.show {
   display: block;
 }
 
