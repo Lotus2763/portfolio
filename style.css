@@ -462,6 +462,31 @@ header nav a:hover {
   margin: 5px 0;
 }
 
+#blog-scroll-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--whiteColor);
+  background-color: var(--activeBlueColor);
+  border: none;
+  border-radius: var(--regularBorderRadius);
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: opacity var(--hoverTransitionTime);
+}
+
+#blog-scroll-top-btn:hover {
+  background-color: var(--warningRedColor);
+}
+
+#blog-scroll-top-btn.show {
+  display: block;
+}
+
 /* Photography Page */
 .photography-page {
   display: flex;

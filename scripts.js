@@ -99,7 +99,11 @@ function setupExperienceBlocks() {
 function setupBlogContent() {
   const datesContainer = document.getElementById("blog-dates");
   const contentContainer = document.getElementById("blog-content");
+  const blogRightContent = document.querySelector(".blog-right-content");
+  const scrollTopBtn = document.getElementById("blog-scroll-top-btn");
+
   if (!datesContainer || !contentContainer) return;
+  if (!blogRightContent || !scrollTopBtn) return;
 
   fetch("data/blogs.json")
     .then((response) => response.json())
@@ -144,6 +148,22 @@ function setupBlogContent() {
   function loadContent(blog) {
     contentContainer.innerHTML = `<h2>${blog.title}</h2>${blog.content}`;
   }
+
+  /* Handle scroll to top button */
+  blogRightContent.addEventListener("scroll", function () {
+    if (blogRightContent.scrollTop > 200) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", function () {
+    blogRightContent.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 }
 
 /**
