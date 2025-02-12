@@ -83,6 +83,7 @@ header h1 {
   line-height: 1.75;
   font-weight: 500;
   margin: 2% 0 1% 0;
+  cursor: pointer;
 }
 
 header nav {
