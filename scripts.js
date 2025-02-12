@@ -16,16 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
         setupBlogContent();
         setupContactFormReset();
 
-       // only setup the contact form submission if the section is contact
-       if (section === "contact") {
-        setupContactFormSubmission();
-      }
-      // only setup the photography photo grid if the section is photography
-      if (section === "photography") {
-        setupPhotographyPhotoGrid();
-      }
+        // only setup the contact form submission if the section is contact
+        if (section === "contact") {
+          setupContactFormSubmission();
+        }
+        // only setup the photography photo grid if the section is photography
+        if (section === "photography") {
+          setupPhotographyPhotoGrid();
+        }
 
-        //Mobile: Automatically close the menu after clicking on the menu item 
+        //Mobile: Automatically close the menu after clicking on the menu item
         if (window.innerWidth <= 768) {
           navMenu.classList.remove("show-menu");
         }
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handle menu button click
   if (menuBtn) {
     menuBtn.addEventListener("click", function (event) {
-      event.stopPropagation(); 
-      navMenu.classList.toggle("show-menu"); 
+      event.stopPropagation();
+      navMenu.classList.toggle("show-menu");
     });
   }
 
@@ -64,13 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-   // Mobile: Automatically closes the menu after clicking out of the menu item
+  // Mobile: Automatically closes the menu after clicking out of the menu item
   document.addEventListener("click", function (event) {
     const isClickInsideMenu = navMenu.contains(event.target);
     const isClickOnMenuBtn = menuBtn.contains(event.target);
 
     if (!isClickInsideMenu && !isClickOnMenuBtn) {
-      navMenu.classList.remove("show-menu"); 
+      navMenu.classList.remove("show-menu");
     }
   });
 
@@ -121,23 +121,28 @@ function setupBlogContent() {
     blogs.forEach((blog, index) => {
       const li = document.createElement("li");
       li.textContent = blog.date;
-      li.addEventListener("click", () => loadContent(blog));
+      li.addEventListener("click", function () {
+        loadContent(blog);
+
+        // Remove active class from all list items
+        document.querySelectorAll(".blog-left-content li").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        // Add active class to the clicked item
+        this.classList.add("active");
+      });
+
       datesContainer.appendChild(li);
 
       if (index === 0) {
-        li.classList.add("active-date");
+        li.classList.add("active");
       }
     });
   }
 
   function loadContent(blog) {
     contentContainer.innerHTML = `<h2>${blog.title}</h2>${blog.content}`;
-    document
-      .querySelectorAll("#blog-dates li")
-      .forEach((li) => li.classList.remove("active-date"));
-    [...datesContainer.children]
-      .find((li) => li.textContent === blog.date)
-      ?.classList.add("active-date");
   }
 }
 
