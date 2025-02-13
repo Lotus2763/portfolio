@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.getElementById("menu-btn");
   const navMenu = document.getElementById("nav-menu");
   const menuBackdrop = document.getElementById("menu-backdrop");
+  const mainElement = document.querySelector("main");
 
   function loadSection(section) {
     fetch(`sections/${section}.html`)
@@ -23,6 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // only setup the photography photo grid if the section is photography
         if (section === "photography") {
           setupPhotographyPhotoGrid();
+        }
+
+        if (mainElement && window.innerWidth <= 768) {
+          if (section === "photography") {
+            mainElement.style.overflowY = "auto";
+          } else {
+            mainElement.style.overflowY = "unset";
+          }
         }
 
         //Mobile: Automatically close the menu after clicking on the menu item
