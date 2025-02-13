@@ -71,7 +71,7 @@ main {
 }
 
 .black-line {
-  width: 90%;
+  width: 100%;
   border: 0.5px solid var(--fontColor);
 }
 
@@ -155,13 +155,14 @@ header nav a:hover {
 }
 
 .home-left-content img {
-  width: 100%;
-  max-height: 30vh;
+  max-width: 100%;
+  max-height: 50vh;
   object-fit: contain;
-  background-color: var(--blockBackgroundColor);
+  /* background-color: var(--blockBackgroundColor); */
   /* border: 1px dashed #ccc; */
   border-radius: var(--hugeBorderRadius);
   display: block;
+  margin-right: 5%;
 }
 
 .home-right-content strong {
@@ -227,6 +228,7 @@ header nav a:hover {
   width: 100%;
   max-width: 400px;
   border: none;
+  color: var(--fontColor);
   border-radius: var(--regularBorderRadius);
   background-color: transparent;
   padding: 10px 20px;
@@ -244,8 +246,9 @@ header nav a:hover {
 .contact-reset-button {
   border: none;
   text-decoration: underline;
-  color: var(--whiteColor);
+  color: grey;
   background-color: transparent;
+  font-size: 1rem;
   font-family: var(--fontFamily) !important;
   cursor: pointer;
 }
@@ -633,6 +636,7 @@ header nav a:hover {
     font-size: 24px;
     background: none;
     border: none;
+    color: var(--fontColor);
     cursor: pointer;
     position: absolute;
     top: 18px;
@@ -641,6 +645,9 @@ header nav a:hover {
   }
 
   /* All Page*/
+  main {
+    margin-bottom: 10%;
+  }
   .home-page,
   .blog-page,
   .contact-page,
@@ -651,13 +658,16 @@ header nav a:hover {
     width: 90%;
   }
 
-  .black-line {
-    width: 100%;
-  }
-
   /* Home Page*/
+  .home-content-container {
+    flex-direction: column-reverse;
+  }
   .home-left-content {
-    display: none;
+    width: 95%;
+  }
+  .home-left-content img {
+    margin-right: none;
+    margin-top: 5%;
   }
   .home-right-content {
     width: 100%;
