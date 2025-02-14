@@ -51,7 +51,7 @@ header {
 
 main {
   flex: 1; /* stand the rest height beside header*/
-  padding: 1%; 
+  padding: 1%;
   overflow-y: auto;
   scroll-behavior: smooth;
   display: flex;
@@ -274,10 +274,10 @@ header nav a:hover {
 
 /* Experience Page*/
 .experience-page {
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .experience-content-container {
-  max-height: 70vh; 
+  max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -704,7 +704,7 @@ header nav a:hover {
   /* Blog Page */
   .blog-page {
     flex-direction: column;
-    max-height: 80vh;
+    max-height: 75vh;
   }
 
   .blog-left-content {
@@ -738,7 +738,8 @@ header nav a:hover {
   }
 
   .blog-right-content {
-    width: 90%;
-    padding: 10px 20px;
+    width: 88%;
+    height: 80%;
+    padding: 20px;
   }
 }
