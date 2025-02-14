@@ -54,7 +54,7 @@ main {
   padding: 1%; /* for css debug*/
   /* border: #000000 1px solid; /* for css debug*/
   overflow-y: auto;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   scroll-behavior: smooth;
   display: flex;
   justify-content: center;
