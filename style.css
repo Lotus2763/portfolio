@@ -608,6 +608,7 @@ header nav a:hover {
   }
   main {
     overflow-y: unset;
+    margin-bottom: 100px;
   }
   /* Header section*/
   header nav {
