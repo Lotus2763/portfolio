@@ -705,6 +705,10 @@ header nav a:hover {
     font-size: 50px;
   }
 
+  .finished-banner {
+    margin-bottom: 50px;
+  }
+
   /* Experience Page */
   .experience-content-container {
     padding: 0 2%;
